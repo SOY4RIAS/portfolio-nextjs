@@ -1,19 +1,26 @@
-import * as React from 'react'
-import Link from 'next/link'
-import Layout from '../components/Layout'
-import { NextPage } from 'next'
+import * as React from "react"
+
+import { NextPage } from "next"
+import Layout from "../components/layout/Layout"
+import { CenterPageContainer } from "../components/layout/CenterPage"
+import { ProfileImage } from "../components/ui/ProfileImage"
 
 const IndexPage: NextPage = () => {
-  return (
-    <Layout title="Home | Next.js + TypeScript Example">
-      <h1>Hello Next.js 👋</h1>
-      <p>
-        <Link href="/about">
-          <a>About</a>
-        </Link>
-      </p>
-    </Layout>
-  )
+	const handleClick = () => {
+		window.open("https://wa.me/573193292571")
+	}
+
+	return (
+		<Layout>
+			<CenterPageContainer>
+				<div>
+					<ProfileImage size={"10rem"} onClick={handleClick} />
+					<h1>Santiago Arias</h1>
+					<h3>Front-End & Mobile Developer</h3>
+				</div>
+			</CenterPageContainer>
+		</Layout>
+	)
 }
 
 export default IndexPage
