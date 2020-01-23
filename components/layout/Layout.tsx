@@ -73,6 +73,7 @@ const Layout: React.FC<LayoutProps> = ({ children, title }) => {
 					}
 					a {
 						text-decoration: none;
+						color: inherit;
 					}
 
 					button {
