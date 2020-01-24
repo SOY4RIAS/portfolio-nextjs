@@ -5,8 +5,7 @@ import Layout from "../components/layout/Layout"
 import { CenterPageContainer } from "../components/layout/CenterPage"
 import { ProfileImage } from "../components/ui/ProfileImage"
 
-import { TiSocialLinkedin } from "react-icons/ti"
-import { FiGithub, FiGitlab, FiMail } from "react-icons/fi"
+import { FiGithub, FiGitlab, FiMail, FiLinkedin } from "react-icons/fi"
 import styled from "@emotion/styled"
 
 const ContactLinks = styled.ul`
@@ -26,15 +25,19 @@ const IndexPage: NextPage = () => {
 	return (
 		<Layout>
 			<CenterPageContainer>
-				<div>
-					<ProfileImage size={"10rem"} onClick={handleClick} />
+				<div id='sumary'>
+					<ProfileImage
+						size={"10rem"}
+						onClick={handleClick}
+						className='profile-image'
+					/>
 					<h1>Santiago Arias</h1>
 					<h3>Front-End & Mobile Developer</h3>
 
 					<ContactLinks>
 						<li>
 							<a href='https://www.linkedin.com/in/csarias/' target='_blank'>
-								<TiSocialLinkedin size={"2.5rem"} />
+								<FiLinkedin size={"2.2rem"} />
 							</a>
 						</li>
 						<li>

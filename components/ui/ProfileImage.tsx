@@ -15,6 +15,7 @@ export const ProfileImage = styled.div<ProfileImageProps>`
     background-repeat: no-repeat;
     background-size:  ${({ size }) => size ?? "200px"};
 
+    transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 
     :hover {
 		filter: brightness(90%) blur(1px);

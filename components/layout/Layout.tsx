@@ -87,8 +87,21 @@ const Layout: React.FC<LayoutProps> = ({ children, title }) => {
 						}
 					}
 
-					* {
-						transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+					h1,
+					h3 {
+						transition: all 0.5s cubic-bezier(0.6, -0.28, 0.74, 0.05);
+					}
+
+					@keyframes dash {
+						to {
+							stroke-dashoffset: 0;
+						}
+					}
+					svg {
+						animation: draw_in 5s backwards;
+						stroke-dasharray: 1000;
+						stroke-dashoffset: 1000;
+						animation: dash 10s linear forwards infinite alternate;
 					}
 				`}
 			/>
