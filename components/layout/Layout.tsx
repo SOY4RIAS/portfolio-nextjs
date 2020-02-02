@@ -10,18 +10,14 @@ const Layout: React.FC<LayoutProps> = ({ children, title }) => {
 	return (
 		<>
 			<Head>
-				<html lang='es' />
+				<meta
+					name='Description'
+					content='Tarjeta de presentación de Santiago Arias; Desarrollador de software Front-End y Movil'
+				/>
 				<title>Santiago Arias {title ? ` · ${title}` : ""}</title>
-				<link
-					rel='stylesheet'
-					href='https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css'
-					integrity='sha256-l85OmPOjvil/SOvVt3HnSSjzF1TUMyT9eV0c2BzEGzU='
-				/>
-				<link
-					href='https://fonts.googleapis.com/css?family=Permanent+Marker|Press+Start+2P|VT323&display=swap'
-					rel='stylesheet'
-				/>
+				<link href='/css/fonts.css' rel='stylesheet' />
 			</Head>
+
 			{/* <Header /> */}
 			<Global
 				styles={css`
@@ -98,10 +94,9 @@ const Layout: React.FC<LayoutProps> = ({ children, title }) => {
 						}
 					}
 					svg {
-						animation: draw_in 5s backwards;
 						stroke-dasharray: 1000;
 						stroke-dashoffset: 1000;
-						animation: dash 10s linear forwards infinite alternate;
+						animation: dash 20s linear forwards infinite alternate;
 					}
 				`}
 			/>

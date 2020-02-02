@@ -17,9 +17,17 @@ const ContactLinks = styled.ul`
 	width: 100%;
 `
 
+const Click = styled.div`
+	cursor: pointer !important;
+`
+
 const IndexPage: NextPage = () => {
 	const handleClick = () => {
 		window.open("https://wa.me/573193292571")
+	}
+
+	const openLink = (link: string) => {
+		window.open(link)
 	}
 
 	return (
@@ -36,28 +44,24 @@ const IndexPage: NextPage = () => {
 
 					<ContactLinks>
 						<li>
-							<a href='https://www.linkedin.com/in/csarias/' target='_blank'>
+							<Click onClick={() => openLink("https://www.linkedin.com/in/csarias/")}>
 								<FiLinkedin size={"2.2rem"} />
-							</a>
+							</Click>
 						</li>
 						<li>
-							<a
-								href='https://github.com/SOY4RIAS'
-								target='_blank'
-								rel='noopener noreferrer'
-							>
+							<Click onClick={() => openLink("https://github.com/SOY4RIAS")}>
 								<FiGithub size={"2.2rem"} />
-							</a>
+							</Click>
 						</li>
 						<li>
-							<a href='https://gitlab.com/SOY4RIAS' target='_blank'>
+							<Click onClick={() => openLink("https://gitlab.com/SOY4RIAS")}>
 								<FiGitlab size={"2.2rem"} />
-							</a>
+							</Click>
 						</li>
 						<li>
-							<a href='mailto:ariasdevweb@gmail.com'>
+							<Click onClick={() => openLink("mailto:ariasdevweb@gmail.com")}>
 								<FiMail size={"2.2rem"} />
-							</a>
+							</Click>
 						</li>
 					</ContactLinks>
 				</div>
