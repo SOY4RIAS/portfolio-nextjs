@@ -59,7 +59,7 @@ const IndexPage: NextPage = () => {
 							</Click>
 						</li>
 						<li>
-							<Click onClick={() => openLink("mailto:ariasdevweb@gmail.com")}>
+							<Click onClick={() => openLink("mailto:me@santiagoarias.tech")}>
 								<FiMail size={"2.2rem"} />
 							</Click>
 						</li>
