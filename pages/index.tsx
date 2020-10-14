@@ -40,8 +40,8 @@ const IndexPage: NextPage = () => {
 						className='profile-image'
 					/>
 					<h1>Santiago Arias</h1>
-					<h3>Front-End & Mobile Developer</h3>
-
+					<h3>Software Developer</h3>
+					
 					<ContactLinks>
 						<li>
 							<Click onClick={() => openLink("https://www.linkedin.com/in/csarias/")}>

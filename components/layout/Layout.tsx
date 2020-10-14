@@ -53,7 +53,8 @@ const Layout: React.FC<LayoutProps> = ({ children, title }) => {
 
 					h1,
 					h2,
-					h3 {
+					h3,
+					h4 {
 						margin: 0 0 2rem 0;
 						line-height: 1.5;
 					}
@@ -64,7 +65,7 @@ const Layout: React.FC<LayoutProps> = ({ children, title }) => {
 						font-weight: 700;
 					}
 
-					h3 {
+					h3, h4 {
 						font-family: "VT323", sans-serif;
 					}
 
