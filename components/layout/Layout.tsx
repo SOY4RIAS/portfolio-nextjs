@@ -9,7 +9,7 @@ export interface LayoutProps {
 
 const Layout: React.FC<LayoutProps> = ({ children, title }) => {
 	useEffect(() => {
-		ReactGA.initialize("G-SNR8DK7P0D")
+		ReactGA.initialize('G-XN9NLL60J2')
 		ReactGA.pageview(window.location.pathname + window.location.search)
 	}, [])
 
