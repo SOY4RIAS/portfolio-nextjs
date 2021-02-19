@@ -1,18 +1,12 @@
-import React, { useEffect } from "react"
+import React from "react"
 import Head from "next/head"
 import { Global, css } from "@emotion/core"
-import ReactGA from "react-ga"
 
 export interface LayoutProps {
 	title?: string
 }
 
 const Layout: React.FC<LayoutProps> = ({ children, title }) => {
-	useEffect(() => {
-		ReactGA.initialize('G-XN9NLL60J2')
-		ReactGA.pageview(window.location.pathname + window.location.search)
-	}, [])
-
 	return (
 		<>
 			<Head>
