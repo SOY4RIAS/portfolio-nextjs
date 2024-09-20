@@ -40,7 +40,7 @@ const IndexPage: NextPage = () => {
 						className='profile-image'
 					/>
 					<h1>Santiago Arias</h1>
-					<h3>Software Developer</h3>
+					<h3>Sr Software Developer</h3>
 					
 					<ContactLinks>
 						<li>
@@ -59,7 +59,7 @@ const IndexPage: NextPage = () => {
 							</Click>
 						</li>
 						<li>
-							<Click onClick={() => openLink("mailto:me@santiagoarias.tech")}>
+							<Click onClick={() => openLink("mailto:me@santiagoarias.dev")}>
 								<FiMail size={"2.2rem"} />
 							</Click>
 						</li>

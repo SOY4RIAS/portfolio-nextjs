@@ -5,7 +5,7 @@ export interface ProfileImageProps {
 	size?: string
 }
 
-const image = "/img/0.jpeg"
+const image = "/img/0.png"
 
 export const ProfileImage = styled.div<ProfileImageProps>`
 	background-image: url('${({ bgImage }) => bgImage ?? image}');
