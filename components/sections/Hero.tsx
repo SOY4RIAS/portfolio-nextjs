@@ -9,10 +9,10 @@ import { resumeData } from '@/data/resume';
 import { ArrowRight, Sparkles, Terminal, Brain, Code, MessageSquare, Github, Linkedin, Mail } from 'lucide-react';
 
 const roles = [
-  'Senior Full Stack Developer',
-  'AI Integration Specialist',
-  'Technical Team Lead',
-  'Clean Architecture Expert',
+  'Senior Frontend Developer',
+  'Technical Lead',
+  'React & React Native Expert',
+  'AI-First Engineer',
 ];
 
 const codeSnippets = [
@@ -65,15 +65,15 @@ export function Hero() {
       <div className="container relative flex flex-col lg:flex-row items-center justify-between gap-12 py-20 lg:py-32">
         {/* Left side - Content */}
         <div className="flex-1 text-center lg:text-left max-w-2xl">
-          {/* AI Badge */}
+          {/* Badge */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
             className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary mb-6"
           >
-            <Sparkles className="w-4 h-4" />
-            <span className="text-sm font-medium">AI-Augmented Developer</span>
+            <Code className="w-4 h-4" />
+            <span className="text-sm font-medium">Senior Frontend Developer & Technical Lead</span>
           </motion.div>
 
           {/* Name */}
@@ -111,9 +111,9 @@ export function Hero() {
             transition={{ duration: 0.5, delay: 0.3 }}
             className="text-lg text-muted-foreground mb-8 leading-relaxed"
           >
-            <strong>8 years</strong> building production applications.
-            Expert in <strong>React/Next.js</strong> and <strong>AI-assisted development</strong>.
-            I use <strong>Claude Code</strong>, <strong>RAG strategies</strong>, and <strong>custom slash commands</strong> to ship faster and smarter.
+            <strong>8 years</strong> building web & mobile apps with <strong>React, Next.js & React Native</strong>.
+            Technical Lead who has managed <strong>teams of 30+ developers</strong>.
+            I leverage <strong>AI tools</strong> to ship faster without compromising quality.
           </motion.p>
 
           {/* Skills badges */}
@@ -123,7 +123,7 @@ export function Hero() {
             transition={{ duration: 0.5, delay: 0.4 }}
             className="flex flex-wrap justify-center lg:justify-start gap-2 mb-8"
           >
-            {['Claude Code', 'RAG', 'Next.js 16', 'TypeScript', 'Team Lead'].map((skill, i) => (
+            {['React/Next.js', 'React Native', 'Technical Lead', 'TypeScript', 'AI-First'].map((skill, i) => (
               <Badge key={skill} variant="secondary" className="px-3 py-1">
                 {skill}
               </Badge>
@@ -236,9 +236,9 @@ export function Hero() {
                   {/* Stats */}
                   <div className="grid grid-cols-3 gap-4 mb-6">
                     {[
-                      { label: 'Years', value: '8+' },
-                      { label: 'Team Led', value: '30' },
-                      { label: 'AI Tools', value: '5+' },
+                      { label: 'Years Exp', value: '8+' },
+                      { label: 'Team Led', value: '30+' },
+                      { label: 'Companies', value: '7' },
                     ].map((stat) => (
                       <div key={stat.label} className="text-center p-3 rounded-lg bg-muted/50">
                         <span className="text-2xl font-bold">{stat.value}</span>
@@ -260,16 +260,16 @@ export function Hero() {
                   {/* Tech icons */}
                   <div className="flex items-center justify-center gap-4 mt-6 pt-4 border-t">
                     <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                      <Brain className="w-4 h-4" />
-                      <span>AI-First</span>
-                    </div>
-                    <div className="flex items-center gap-2 text-sm text-muted-foreground">
                       <Code className="w-4 h-4" />
-                      <span>Clean Code</span>
+                      <span>React Expert</span>
                     </div>
                     <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                      <Terminal className="w-4 h-4" />
-                      <span>CLI Expert</span>
+                      <Brain className="w-4 h-4" />
+                      <span>Tech Lead</span>
+                    </div>
+                    <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                      <Sparkles className="w-4 h-4" />
+                      <span>AI-First</span>
                     </div>
                   </div>
                 </div>

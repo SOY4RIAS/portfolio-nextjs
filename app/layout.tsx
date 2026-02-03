@@ -21,15 +21,15 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "Santiago Arias | AI-Augmented Full Stack Developer",
-  description: "Portfolio of Santiago Arias - 8+ years building production apps with React/Next.js. Expert in AI-assisted development with Claude Code, RAG strategies, and custom slash commands.",
-  keywords: ["Next.js", "React", "AI Developer", "Claude Code", "RAG", "TypeScript", "Tailwind CSS", "Full Stack", "Team Lead"],
+  title: "Santiago Arias | Senior Frontend Developer & Technical Lead",
+  description: "Portfolio of Santiago Arias - 8+ years building web & mobile apps with React, Next.js & React Native. Technical Lead with experience managing 30+ developers. AI-first development approach.",
+  keywords: ["React", "Next.js", "React Native", "Frontend Developer", "Technical Lead", "TypeScript", "AI Developer", "Team Lead"],
   openGraph: {
     type: "website",
     locale: "en_US",
     url: "https://santiagoarias.dev",
-    title: "Santiago Arias | AI-Augmented Full Stack Developer",
-    description: "8+ years of experience. Expert in React/Next.js and AI-assisted development. See interactive demos of RAG, slash commands, and AI workflows.",
+    title: "Santiago Arias | Senior Frontend Developer & Technical Lead",
+    description: "8+ years building web & mobile apps. React, Next.js & React Native expert. Technical Lead with AI-first development approach.",
     images: [
       {
         url: "https://github.com/soy4rias.png",
@@ -41,8 +41,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Santiago Arias | AI-Augmented Full Stack Developer",
-    description: "8+ years building production apps. Expert in AI-assisted development with Claude Code, RAG, and custom slash commands.",
+    title: "Santiago Arias | Senior Frontend Developer & Technical Lead",
+    description: "8+ years building web & mobile apps with React, Next.js & React Native. Technical Lead with AI-first approach.",
     images: ["https://github.com/soy4rias.png"],
     creator: "@soy4rias",
   },

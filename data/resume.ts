@@ -46,14 +46,14 @@ export interface ResumeData {
 export const resumeData: ResumeData = {
   personalInfo: {
     name: "Santiago Arias",
-    title: "Senior Full Stack Developer & AI Integration Specialist",
+    title: "Senior Frontend Developer | Technical Lead | AI-First Engineer",
     email: "me@santiagoarias.dev",
     phone: "+573193292571",
     website: "https://santiagoarias.dev",
     github: "https://github.com/SOY4RIAS",
     linkedin: "https://www.linkedin.com/in/csarias/",
     location: "Colombia (Remote)",
-    summary: "Senior Full Stack Developer with 8 years of experience, focused on creating robust technology solutions. My expertise lies in frontend development with ReactJS and NextJS, where I've gained a strong grasp of clean architectures and design patterns. I also have solid backend skills with NestJS and experience in deploying applications on cloud platforms like AWS and Vercel. I am committed to technical excellence and improving team performance through mentoring and knowledge sharing, which enhances deliverable quality and fosters a collaborative learning environment.",
+    summary: "Senior Frontend Developer with 8 years of experience building robust web and mobile applications. Expert in ReactJS, NextJS, and React Native with a strong grasp of clean architectures and design patterns. Proven Technical Lead who has managed teams of up to 30 developers, driving technical excellence through mentoring and knowledge sharing. I leverage AI tools like Claude Code and custom workflows to accelerate development while maintaining code quality. Committed to delivering high-impact solutions that combine technical expertise with strategic leadership.",
   },
   skills: [
     // Frontend
@@ -94,7 +94,7 @@ export const resumeData: ResumeData = {
     {
       company: "Lean Tech",
       role: "Senior Frontend Developer",
-      period: "Mar 2024 - Present",
+      period: "Mar 2024 - Jan 2025",
       description: "Comprehensive development and analysis of frontend implementations for assigned clients. Definition and implementation of system architectures. Leadership in code quality and frontend development standards.",
       achievements: [
         "Implemented code standards and best practices that increased the productivity of the team of 5 developers, resulting in a significant improvement in project maintainability",
@@ -225,7 +225,7 @@ export const knowledgeBase = {
   ],
   experience: {
     total: "8 years of professional experience in software development",
-    current: "Currently working at BitcoinIRA as Senior Frontend Developer (since Apr 2025) and Lean Tech (since Mar 2024)",
+    current: "Currently working at BitcoinIRA as Senior Frontend Developer (since Apr 2025). Previously at Lean Tech (Mar 2024 - Jan 2025)",
     leadership: "Led teams of up to 30 developers at JIKKOSOFT, managed critical projects across multiple companies",
     highlights: [
       "Led complete TypeScript migrations",
