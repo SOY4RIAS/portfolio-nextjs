@@ -1,10 +1,9 @@
-import { Hero } from "@/components/sections/Hero";
-import { AIChat } from "@/components/sections/AIChat";
-import { AIWorkflow } from "@/components/sections/AIWorkflow";
-import { ExperienceSection } from "@/components/sections/ExperienceSection";
-import { EducationSection } from "@/components/sections/EducationSection";
-import { AIExpertiseSection } from "@/components/sections/AIExpertiseSection";
-import { GitHubActivity } from "@/components/sections/GitHubActivity";
+// Feature-based imports (Clean Architecture)
+import { Hero } from '@/features/hero';
+import { AIChat, AIWorkflow, AIExpertiseSection } from '@/features/ai';
+import { ExperienceSection } from '@/features/experience';
+import { EducationSection } from '@/features/education';
+import { GitHubActivity } from '@/features/github';
 
 export default function Home() {
   return (
