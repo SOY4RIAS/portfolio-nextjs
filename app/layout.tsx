@@ -1,10 +1,9 @@
-import type { Metadata } from "next";
-import localFont from "next/font/local";
-import "./globals.css";
-import { Header } from "@/components/layout/Header";
-import { Footer } from "@/components/layout/Footer";
-import { cn } from "@/lib/utils";
-import { ThemeProvider } from "@/components/theme-provider";
+import type { Metadata } from 'next';
+import localFont from 'next/font/local';
+import './globals.css';
+
+// Shared imports (Clean Architecture)
+import { Header, Footer, ThemeProvider, cn } from '@/shared';
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff2",

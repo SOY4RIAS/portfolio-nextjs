@@ -1,8 +1,8 @@
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import { ArrowLeft } from "lucide-react";
-import Link from "next/link";
+import Link from 'next/link';
+import { ArrowLeft } from 'lucide-react';
+
+// Shared imports (Clean Architecture)
+import { Card, CardContent, CardDescription, CardHeader, CardTitle, Badge, Button } from '@/shared';
 
 export default function BlogPage() {
   const posts = [
