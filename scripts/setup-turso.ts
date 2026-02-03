@@ -21,8 +21,13 @@ async function setupDatabase() {
   console.log('🚀 Setting up Turso database for RAG...\n');
 
   try {
+    // Drop existing table to recreate with new dimensions
+    console.log('🗑️  Dropping existing table (if any)...');
+    await turso.execute('DROP TABLE IF EXISTS documents');
+    console.log('   ✓ Old table dropped\n');
+
     // Create documents table with vector column
-    // Using 384 dimensions for all-MiniLM-L6-v2 embeddings
+    // Using 1536 dimensions for openai/text-embedding-3-small (via OpenRouter)
     console.log('📦 Creating documents table...');
     await turso.execute(`
       CREATE TABLE IF NOT EXISTS documents (
@@ -30,11 +35,11 @@ async function setupDatabase() {
         content TEXT NOT NULL,
         category TEXT NOT NULL,
         metadata TEXT,
-        embedding F32_BLOB(384),
+        embedding F32_BLOB(1536),
         created_at TEXT DEFAULT CURRENT_TIMESTAMP
       )
     `);
-    console.log('   ✓ Documents table created\n');
+    console.log('   ✓ Documents table created (1536 dimensions)\n');
 
     // Create vector index with DiskANN algorithm for fast similarity search
     console.log('🔍 Creating vector index (DiskANN)...');

@@ -29,40 +29,31 @@ interface DocumentChunk {
 }
 
 /**
- * Generate embedding using HuggingFace Inference API
+ * Generate embedding using OpenRouter API
+ * Using openai/text-embedding-3-small (1536 dimensions) - very affordable
  */
 async function generateEmbedding(text: string): Promise<number[]> {
-  const response = await fetch(
-    'https://api-inference.huggingface.co/pipeline/feature-extraction/sentence-transformers/all-MiniLM-L6-v2',
-    {
-      method: 'POST',
-      headers: {
-        Authorization: `Bearer ${process.env.HUGGINGFACE_API_KEY}`,
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        inputs: text,
-        options: { wait_for_model: true },
-      }),
-    }
-  );
+  const response = await fetch('https://openrouter.ai/api/v1/embeddings', {
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${process.env.OPENROUTER_API_KEY}`,
+      'Content-Type': 'application/json',
+      'HTTP-Referer': 'https://santiagoarias.dev',
+      'X-Title': 'Santiago Arias Portfolio',
+    },
+    body: JSON.stringify({
+      model: 'openai/text-embedding-3-small',
+      input: text,
+    }),
+  });
 
   if (!response.ok) {
     const error = await response.text();
-    throw new Error(`HuggingFace API error: ${error}`);
+    throw new Error(`OpenRouter API error: ${error}`);
   }
 
-  const embedding = await response.json();
-
-  // Handle different response formats
-  if (Array.isArray(embedding) && typeof embedding[0] === 'number') {
-    return embedding;
-  }
-  if (Array.isArray(embedding) && Array.isArray(embedding[0])) {
-    return embedding[0];
-  }
-
-  throw new Error('Unexpected embedding format');
+  const result = await response.json();
+  return result.data[0].embedding;
 }
 
 /**
@@ -187,9 +178,9 @@ async function clearExistingDocuments(): Promise<void> {
 async function ingestData() {
   console.log('🚀 Starting data ingestion...\n');
 
-  // Check if HuggingFace API key is set
-  if (!process.env.HUGGINGFACE_API_KEY) {
-    console.error('❌ HUGGINGFACE_API_KEY is not set in .env.local');
+  // Check if OpenRouter API key is set
+  if (!process.env.OPENROUTER_API_KEY) {
+    console.error('❌ OPENROUTER_API_KEY is not set in .env.local');
     process.exit(1);
   }
 
@@ -228,8 +219,8 @@ async function ingestData() {
       console.log(' ✓');
       successCount++;
 
-      // Rate limit for HuggingFace free tier (avoid 429 errors)
-      await new Promise((r) => setTimeout(r, 300));
+      // Small delay to avoid rate limits
+      await new Promise((r) => setTimeout(r, 200));
     } catch (error) {
       console.log(' ❌');
       console.error(`   Error: ${error instanceof Error ? error.message : 'Unknown error'}`);
