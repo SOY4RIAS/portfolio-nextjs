@@ -29,15 +29,25 @@ He has led teams of 30+ developers and currently works at BitcoinIRA.
  */
 async function getRelevantContext(query: string): Promise<string> {
   try {
+    console.log('\n🔍 RAG Query:', query);
+
     // Generate embedding for the query
     const embedding = await generateEmbedding(query);
+    console.log('📊 Embedding generated (1536 dimensions)');
 
     // Search for similar documents
     const results = await searchSimilar(embedding, 5);
+    console.log(`📚 Found ${results.length} relevant documents:`);
 
     if (results.length === 0) {
+      console.log('   (no results)');
       return '';
     }
+
+    // Log retrieved categories
+    results.forEach((doc, i) => {
+      console.log(`   ${i + 1}. [${doc.category}] ${doc.content.slice(0, 50)}...`);
+    });
 
     // Format the context
     return results
