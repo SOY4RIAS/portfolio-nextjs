@@ -141,9 +141,9 @@ export function Hero() {
               <MessageSquare className="mr-2 h-4 w-4" />
               Chat with my AI
             </Button>
-            <Button size="lg" variant="outline" onClick={() => document.getElementById('slash-commands')?.scrollIntoView({ behavior: 'smooth' })}>
-              <Terminal className="mr-2 h-4 w-4" />
-              See AI Demos
+            <Button size="lg" variant="outline" onClick={() => document.getElementById('experience')?.scrollIntoView({ behavior: 'smooth' })}>
+              <Code className="mr-2 h-4 w-4" />
+              View Experience
             </Button>
           </motion.div>
 
