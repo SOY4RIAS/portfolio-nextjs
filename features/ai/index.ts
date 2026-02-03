@@ -8,7 +8,7 @@ export { AIExpertiseSection } from './components/AIExpertiseSection';
 
 // Data
 export { aiExpertise, aiSkills } from './data/ai-expertise';
-export type { AIExpertiseArea, AISkill } from './data/ai-expertise';
+export type { AIExpertiseArea } from './data/ai-expertise';
 export { knowledgeBase } from './data/knowledge-base';
 export type { KnowledgeBase } from './data/knowledge-base';
 

@@ -112,7 +112,7 @@ export function AIExpertiseSection() {
           <div className="flex flex-wrap justify-center gap-3">
             {aiSkills.map((skill, i) => (
               <motion.div
-                key={skill.name}
+                key={skill}
                 initial={{ opacity: 0, scale: 0.8 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.3, delay: i * 0.05 }}
@@ -123,10 +123,7 @@ export function AIExpertiseSection() {
                   className="text-md py-2 px-4 hover:bg-primary hover:text-primary-foreground transition-colors cursor-default"
                 >
                   <Cpu className="w-3 h-3 mr-2" />
-                  {skill.name}
-                  {skill.level && (
-                    <span className="ml-2 text-xs opacity-60">({skill.level})</span>
-                  )}
+                  {skill}
                 </Badge>
               </motion.div>
             ))}

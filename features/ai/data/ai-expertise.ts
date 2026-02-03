@@ -47,16 +47,11 @@ export const aiExpertise: AIExpertiseArea[] = [
   }
 ];
 
-export interface AISkill {
-  name: string;
-  level: "Expert" | "Advanced" | "Intermediate";
-}
-
-export const aiSkills: AISkill[] = [
-  { name: "Claude Code", level: "Expert" },
-  { name: "Cursor", level: "Expert" },
-  { name: "LM Studio", level: "Advanced" },
-  { name: "RAG Strategies", level: "Advanced" },
-  { name: "Slash Commands", level: "Expert" },
-  { name: "AI Memory Tooling", level: "Advanced" },
+export const aiSkills: string[] = [
+  "Claude Code",
+  "Cursor",
+  "LM Studio",
+  "RAG Strategies",
+  "Slash Commands",
+  "AI Memory Tooling",
 ];
