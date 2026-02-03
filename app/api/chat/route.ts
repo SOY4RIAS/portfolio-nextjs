@@ -31,9 +31,9 @@ async function getRelevantContext(query: string): Promise<string> {
   try {
     console.log('\n🔍 RAG Query:', query);
 
-    // Generate embedding for the query
+    // Generate embedding for the query (Cloudflare Workers AI - FREE)
     const embedding = await generateEmbedding(query);
-    console.log('📊 Embedding generated (1536 dimensions)');
+    console.log('📊 Embedding generated (768 dimensions - Cloudflare FREE)');
 
     // Search for similar documents
     const results = await searchSimilar(embedding, 5);

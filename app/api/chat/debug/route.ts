@@ -46,7 +46,8 @@ export async function GET(req: Request) {
         full_content: doc.content,
       })),
       metadata: {
-        model: 'openai/text-embedding-3-small',
+        model: '@cf/google/embeddinggemma-300m (FREE)',
+        provider: 'Cloudflare Workers AI',
         vector_db: 'Turso (libSQL)',
         index_type: 'DiskANN cosine similarity',
       },
@@ -61,7 +62,8 @@ export async function GET(req: Request) {
         stack: errorStack,
         query,
         env_check: {
-          has_openrouter_key: !!process.env.OPENROUTER_API_KEY,
+          has_cloudflare_account: !!process.env.CLOUDFLARE_ACCOUNT_ID,
+          has_cloudflare_token: !!process.env.CLOUDFLARE_API_TOKEN,
           has_turso_url: !!process.env.TURSO_DATABASE_URL,
         },
       },

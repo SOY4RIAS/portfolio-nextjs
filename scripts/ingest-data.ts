@@ -29,31 +29,37 @@ interface DocumentChunk {
 }
 
 /**
- * Generate embedding using OpenRouter API
- * Using openai/text-embedding-3-small (1536 dimensions) - very affordable
+ * Generate embedding using Cloudflare Workers AI (FREE)
+ * Using @cf/google/embeddinggemma-300m (768 dimensions)
  */
 async function generateEmbedding(text: string): Promise<number[]> {
-  const response = await fetch('https://openrouter.ai/api/v1/embeddings', {
-    method: 'POST',
-    headers: {
-      Authorization: `Bearer ${process.env.OPENROUTER_API_KEY}`,
-      'Content-Type': 'application/json',
-      'HTTP-Referer': 'https://santiagoarias.dev',
-      'X-Title': 'Santiago Arias Portfolio',
-    },
-    body: JSON.stringify({
-      model: 'openai/text-embedding-3-small',
-      input: text,
-    }),
-  });
+  const accountId = process.env.CLOUDFLARE_ACCOUNT_ID;
+  const apiToken = process.env.CLOUDFLARE_API_TOKEN;
+
+  const response = await fetch(
+    `https://api.cloudflare.com/client/v4/accounts/${accountId}/ai/run/@cf/google/embeddinggemma-300m`,
+    {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${apiToken}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ text: [text] }),
+    }
+  );
 
   if (!response.ok) {
     const error = await response.text();
-    throw new Error(`OpenRouter API error: ${error}`);
+    throw new Error(`Cloudflare AI error: ${error}`);
   }
 
   const result = await response.json();
-  return result.data[0].embedding;
+
+  if (!result.success) {
+    throw new Error(`Cloudflare AI error: ${JSON.stringify(result.errors)}`);
+  }
+
+  return result.result.data[0];
 }
 
 /**
@@ -178,9 +184,9 @@ async function clearExistingDocuments(): Promise<void> {
 async function ingestData() {
   console.log('🚀 Starting data ingestion...\n');
 
-  // Check if OpenRouter API key is set
-  if (!process.env.OPENROUTER_API_KEY) {
-    console.error('❌ OPENROUTER_API_KEY is not set in .env.local');
+  // Check if Cloudflare credentials are set
+  if (!process.env.CLOUDFLARE_ACCOUNT_ID || !process.env.CLOUDFLARE_API_TOKEN) {
+    console.error('❌ CLOUDFLARE_ACCOUNT_ID or CLOUDFLARE_API_TOKEN is not set in .env.local');
     process.exit(1);
   }
 
