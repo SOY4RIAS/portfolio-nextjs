@@ -215,6 +215,7 @@ export function AIChat() {
   ]);
   const [input, setInput] = useState('');
   const [isTyping, setIsTyping] = useState(false);
+  const [hasInteracted, setHasInteracted] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -222,13 +223,18 @@ export function AIChat() {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   };
 
+  // Only scroll after user has interacted with the chat
   useEffect(() => {
-    scrollToBottom();
-  }, [messages]);
+    if (hasInteracted) {
+      scrollToBottom();
+    }
+  }, [messages, hasInteracted]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!input.trim() || isTyping) return;
+
+    setHasInteracted(true);
 
     const userMessage: Message = {
       id: Date.now().toString(),
@@ -257,6 +263,7 @@ export function AIChat() {
   };
 
   const handleSuggestionClick = (question: string) => {
+    setHasInteracted(true);
     setInput(question);
     inputRef.current?.focus();
   };
