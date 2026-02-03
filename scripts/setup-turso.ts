@@ -6,7 +6,11 @@
  */
 
 import { createClient } from '@libsql/client';
-import 'dotenv/config';
+import { config } from 'dotenv';
+import { resolve } from 'path';
+
+// Load environment variables from .env.local
+config({ path: resolve(process.cwd(), '.env.local') });
 
 const turso = createClient({
   url: process.env.TURSO_DATABASE_URL!,
