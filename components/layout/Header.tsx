@@ -21,11 +21,11 @@ export function Header() {
   ];
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="container flex h-14 items-center justify-between">
+    <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/80 backdrop-blur-md supports-[backdrop-filter]:bg-background/60">
+      <div className="container flex h-16 items-center justify-between">
         <div className="flex items-center">
-             <Link href="/" className="mr-6 flex items-center space-x-2">
-            <span className="font-bold hidden sm:inline-block">
+             <Link href="/" className="mr-8 flex items-center space-x-2">
+            <span className="font-bold hidden sm:inline-block tracking-tight text-xl">
               Santiago Arias
             </span>
           </Link>
@@ -35,7 +35,7 @@ export function Header() {
                 key={route.href}
                 href={route.href}
                 className={cn(
-                  'transition-colors hover:text-foreground/80',
+                  'transition-colors hover:text-foreground',
                   pathname === route.href ? 'text-foreground' : 'text-foreground/60'
                 )}
               >
@@ -59,13 +59,13 @@ export function Header() {
         </div>
       </div>
       {isMenuOpen && (
-        <div className="container md:hidden pb-4">
+        <div className="container md:hidden pb-4 pt-2 bg-background border-b border-border/40">
           <nav className="flex flex-col space-y-4">
             {routes.map((route) => (
               <Link
                 key={route.href}
                 href={route.href}
-                className="text-sm font-medium transition-colors hover:text-foreground/80"
+                className="text-sm font-medium transition-colors hover:text-foreground"
                 onClick={() => setIsMenuOpen(false)}
               >
                 {route.label}

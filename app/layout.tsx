@@ -6,11 +6,34 @@ import { Footer } from "@/components/layout/Footer";
 import { cn } from "@/lib/utils";
 import { ThemeProvider } from "@/components/theme-provider";
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 
 export const metadata: Metadata = {
   title: "Santiago Arias | Senior Frontend Developer & AI Specialist",
-  description: "Portfolio of Santiago Arias, a Senior Frontend Developer specializing in Next.js, React, and AI integration.",
+  description: "Portfolio of Santiago Arias, a Senior Frontend Developer specializing in Next.js, React, and AI integration. Expert in building high-performance, intelligent web applications.",
+  keywords: ["Next.js", "React", "Frontend Developer", "AI Engineer", "TypeScript", "Tailwind CSS", "Vercel"],
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: "https://santiagoarias.dev",
+    title: "Santiago Arias | Senior Frontend Developer",
+    description: "Senior Frontend Developer & AI Specialist. View my work and experience.",
+    images: [
+      {
+        url: "https://github.com/soy4rias.png",
+        width: 460,
+        height: 460,
+        alt: "Santiago Arias",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Santiago Arias | Senior Frontend Developer",
+    description: "Senior Frontend Developer & AI Specialist.",
+    images: ["https://github.com/soy4rias.png"],
+    creator: "@soy4rias", // Assuming twitter handle based on github
+  },
 };
 
 export default function RootLayout({
@@ -20,7 +43,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="scroll-smooth" suppressHydrationWarning>
-      <body className={cn(inter.className, "min-h-screen bg-background font-sans antialiased")}>
+      <body className={cn(inter.variable, "min-h-screen bg-background font-sans antialiased")}>
         <ThemeProvider
             attribute="class"
             defaultTheme="system"
