@@ -56,7 +56,7 @@ export function Hero() {
       >
         <div className="relative h-64 w-64 overflow-hidden rounded-full border-4 border-muted shadow-2xl md:h-80 md:w-80">
           <Image
-            src="/img/0.jpeg"
+            src="/img/0.png"
             alt={resumeData.personalInfo.name}
             fill
             className="object-cover"

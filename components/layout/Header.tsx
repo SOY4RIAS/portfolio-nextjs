@@ -6,6 +6,7 @@ import { usePathname } from 'next/navigation';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
 import { Menu } from 'lucide-react';
+import { ModeToggle } from '@/components/ui/theme-toggle';
 
 export function Header() {
   const pathname = usePathname();
@@ -14,20 +15,21 @@ export function Header() {
   const routes = [
     { href: '/', label: 'Home' },
     { href: '#experience', label: 'Experience' },
+    { href: '#education', label: 'Education' },
     { href: '#ai-expertise', label: 'AI Expertise' },
     { href: '/blog', label: 'Blog' },
   ];
 
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="container flex h-14 items-center">
-        <div className="mr-4 hidden md:flex">
-          <Link href="/" className="mr-6 flex items-center space-x-2">
-            <span className="hidden font-bold sm:inline-block">
+      <div className="container flex h-14 items-center justify-between">
+        <div className="flex items-center">
+             <Link href="/" className="mr-6 flex items-center space-x-2">
+            <span className="font-bold hidden sm:inline-block">
               Santiago Arias
             </span>
           </Link>
-          <nav className="flex items-center space-x-6 text-sm font-medium">
+           <nav className="hidden md:flex items-center space-x-6 text-sm font-medium">
             {routes.map((route) => (
               <Link
                 key={route.href}
@@ -42,12 +44,12 @@ export function Header() {
             ))}
           </nav>
         </div>
-        <div className="flex flex-1 items-center justify-between space-x-2 md:justify-end">
-           <div className="w-full flex-1 md:w-auto md:flex-none">
-            {/* Placeholder for search or other items */}
-          </div>
+
+        <div className="flex items-center gap-2">
+          <ModeToggle />
           <Button
             variant="ghost"
+            size="icon"
             className="md:hidden"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
           >
