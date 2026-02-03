@@ -1,8 +1,8 @@
 'use client';
 
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Send, Bot, User, Sparkles, Terminal, X } from 'lucide-react';
+import { Send, Bot, User, Sparkles } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { resumeData, knowledgeBase } from '@/data/resume';
 
@@ -10,7 +10,6 @@ interface Message {
   id: string;
   role: 'user' | 'assistant';
   content: string;
-  isTyping?: boolean;
 }
 
 const suggestedQuestions = [
@@ -24,19 +23,16 @@ const suggestedQuestions = [
 function generateResponse(query: string): string {
   const q = query.toLowerCase();
 
-  // Greeting patterns
   if (q.match(/^(hi|hello|hey|hola)/)) {
     return `Hey! I'm Santiago's AI assistant, powered by a simple RAG system built into this portfolio. I have access to Santiago's resume and can answer questions about his experience, skills, and AI expertise. What would you like to know?`;
   }
 
-  // Experience queries
   if (q.includes('experience') || q.includes('work') || q.includes('job') || q.includes('career')) {
     const exp = resumeData.experience;
     return `Santiago has **${knowledgeBase.experience.total}**. Here's a quick overview:
 
-**Current Positions:**
+**Current Position:**
 • **${exp[0].company}** - ${exp[0].role} (${exp[0].period})
-• **${exp[1].company}** - ${exp[1].role} (${exp[1].period})
 
 **Previous Highlights:**
 • Led a team of 30 developers at JIKKOSOFT
@@ -46,7 +42,6 @@ function generateResponse(query: string): string {
 Would you like details about any specific role?`;
   }
 
-  // Leadership queries
   if (q.includes('lead') || q.includes('team') || q.includes('manage')) {
     return `Santiago has extensive leadership experience:
 
@@ -63,7 +58,6 @@ Would you like details about any specific role?`;
 He's passionate about **mentoring** and **knowledge sharing** to improve team performance.`;
   }
 
-  // AI tools queries
   if (q.includes('ai') || q.includes('artificial intelligence') || q.includes('llm') || q.includes('claude') || q.includes('cursor')) {
     return `Santiago is deeply invested in AI-augmented development:
 
@@ -81,7 +75,6 @@ He's passionate about **mentoring** and **knowledge sharing** to improve team pe
 This portfolio itself demonstrates RAG concepts - I'm answering based on Santiago's resume data!`;
   }
 
-  // RAG queries
   if (q.includes('rag') || q.includes('retrieval') || q.includes('context')) {
     return `Santiago specializes in **RAG (Retrieval Augmented Generation)** strategies:
 
@@ -98,7 +91,6 @@ This portfolio itself demonstrates RAG concepts - I'm answering based on Santiag
 Want to know more about context engineering or AI integration patterns?`;
   }
 
-  // Tech stack queries
   if (q.includes('tech') || q.includes('stack') || q.includes('skill') || q.includes('language') || q.includes('framework')) {
     const skills = resumeData.skills;
     const frontend = skills.filter(s => s.category === 'Frontend').map(s => s.name).join(', ');
@@ -124,7 +116,6 @@ ${ai}
 Santiago stays current with the latest tech - this portfolio uses **Next.js 16** with **React 19**!`;
   }
 
-  // Slash commands queries
   if (q.includes('slash') || q.includes('command')) {
     return `Santiago creates **custom slash commands** to accelerate development:
 
@@ -140,12 +131,9 @@ In AI coding tools like Claude Code and Cursor, slash commands are shortcuts tha
 \`/plan\` - Break down a feature into tasks
 \`/review\` - AI-assisted code review
 \`/test\` - Generate test cases
-\`/doc\` - Auto-generate documentation
-
-Try the interactive demo on this page to see slash commands in action!`;
+\`/doc\` - Auto-generate documentation`;
   }
 
-  // Contact queries
   if (q.includes('contact') || q.includes('email') || q.includes('hire') || q.includes('reach')) {
     return `You can reach Santiago through:
 
@@ -161,7 +149,6 @@ He's available for:
 • Team mentoring and training`;
   }
 
-  // Education queries
   if (q.includes('education') || q.includes('study') || q.includes('degree') || q.includes('school')) {
     return `**Education:**
 ${resumeData.education[0].school}
@@ -175,7 +162,6 @@ Santiago believes in continuous learning and has maintained expertise through:
 • Experimenting with new AI tools and workflows`;
   }
 
-  // Portfolio/This site queries
   if (q.includes('portfolio') || q.includes('this site') || q.includes('website') || q.includes('built')) {
     return `This portfolio is itself a demonstration of AI-augmented development:
 
@@ -187,13 +173,11 @@ Santiago believes in continuous learning and has maintained expertise through:
 
 **AI Features Demonstrated:**
 • **This Chat** - A RAG-like system that answers questions from resume data
-• **Slash Command Demo** - Interactive demonstration of AI workflows
-• **AI Terminal** - Shows real-time AI development patterns
+• **AI Workflow** - Interactive visualization of Planning/Coding/Review methodology
 
 The entire site showcases Santiago's philosophy: **AI should augment every part of the development process**.`;
   }
 
-  // Default response
   return `I can help you learn about Santiago! Here are some topics I know about:
 
 • **Experience** - 8 years of software development, leadership roles
@@ -215,26 +199,23 @@ export function AIChat() {
   ]);
   const [input, setInput] = useState('');
   const [isTyping, setIsTyping] = useState(false);
-  const [hasInteracted, setHasInteracted] = useState(false);
-  const messagesEndRef = useRef<HTMLDivElement>(null);
+
+  // Use refs for values that don't need to trigger re-renders (5.12)
+  const messagesContainerRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
-  const scrollToBottom = () => {
-    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
-  };
-
-  // Only scroll after user has interacted with the chat
-  useEffect(() => {
-    if (hasInteracted) {
-      scrollToBottom();
+  // Scroll within container only, not the entire page
+  // Called directly from event handlers, not via useEffect (5.7)
+  const scrollToBottom = useCallback(() => {
+    const container = messagesContainerRef.current;
+    if (container) {
+      container.scrollTop = container.scrollHeight;
     }
-  }, [messages, hasInteracted]);
+  }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!input.trim() || isTyping) return;
-
-    setHasInteracted(true);
 
     const userMessage: Message = {
       id: Date.now().toString(),
@@ -246,12 +227,14 @@ export function AIChat() {
     setInput('');
     setIsTyping(true);
 
+    // Scroll after state update - use requestAnimationFrame to wait for render
+    requestAnimationFrame(scrollToBottom);
+
     // Simulate AI thinking time
     await new Promise(resolve => setTimeout(resolve, 500 + Math.random() * 1000));
 
     const response = generateResponse(userMessage.content);
 
-    // Simulate typing effect
     const assistantMessage: Message = {
       id: (Date.now() + 1).toString(),
       role: 'assistant',
@@ -260,10 +243,12 @@ export function AIChat() {
 
     setMessages(prev => [...prev, assistantMessage]);
     setIsTyping(false);
+
+    // Scroll after assistant message - use requestAnimationFrame to wait for render
+    requestAnimationFrame(scrollToBottom);
   };
 
   const handleSuggestionClick = (question: string) => {
-    setHasInteracted(true);
     setInput(question);
     inputRef.current?.focus();
   };
@@ -304,7 +289,7 @@ export function AIChat() {
                 <Bot className="w-5 h-5 text-primary" />
               </div>
               <div>
-                <h3 className="font-semibold">Santiago's AI Assistant</h3>
+                <h3 className="font-semibold">Santiago&apos;s AI Assistant</h3>
                 <p className="text-sm text-muted-foreground">Powered by RAG • Knowledge base: Resume data</p>
               </div>
               <div className="ml-auto flex items-center gap-2">
@@ -313,8 +298,11 @@ export function AIChat() {
               </div>
             </div>
 
-            {/* Messages */}
-            <div className="h-[400px] overflow-y-auto p-6 space-y-4">
+            {/* Messages - use ref on container for scroll control */}
+            <div
+              ref={messagesContainerRef}
+              className="h-[400px] overflow-y-auto p-6 space-y-4"
+            >
               <AnimatePresence mode="popLayout">
                 {messages.map((message) => (
                   <motion.div
@@ -376,7 +364,6 @@ export function AIChat() {
                   </div>
                 </motion.div>
               )}
-              <div ref={messagesEndRef} />
             </div>
 
             {/* Suggested Questions */}
