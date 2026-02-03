@@ -1,12 +1,14 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Inter, Space_Grotesk } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { cn } from "@/lib/utils";
 import { ThemeProvider } from "@/components/theme-provider";
+import { GrainOverlay } from "@/components/ui/GrainOverlay";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
+const spaceGrotesk = Space_Grotesk({ subsets: ["latin"], variable: "--font-heading" });
 
 export const metadata: Metadata = {
   title: "Santiago Arias | Senior Frontend Developer & AI Specialist",
@@ -32,7 +34,7 @@ export const metadata: Metadata = {
     title: "Santiago Arias | Senior Frontend Developer",
     description: "Senior Frontend Developer & AI Specialist.",
     images: ["https://github.com/soy4rias.png"],
-    creator: "@soy4rias", // Assuming twitter handle based on github
+    creator: "@soy4rias",
   },
 };
 
@@ -43,13 +45,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="scroll-smooth" suppressHydrationWarning>
-      <body className={cn(inter.variable, "min-h-screen bg-background font-sans antialiased")}>
+      <body className={cn(inter.variable, spaceGrotesk.variable, "min-h-screen bg-background font-sans antialiased")}>
         <ThemeProvider
             attribute="class"
-            defaultTheme="system"
-            enableSystem
+            defaultTheme="dark"
+            enableSystem={false}
             disableTransitionOnChange
           >
+          <GrainOverlay />
           <Header />
           <main className="flex-1">
             {children}

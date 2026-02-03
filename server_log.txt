@@ -9,3 +9,7 @@ $ next dev
  GET / 200 in 8.9s (compile: 7.4s, render: 1495ms)
 ✓ Compiled in 119ms
  GET / 200 in 656ms (compile: 261ms, render: 395ms)
+✓ Compiled in 4.3s
+✓ Compiled in 258ms
+✓ Compiled in 1124ms
+ GET / 200 in 3.4s (compile: 1923ms, render: 1444ms)
