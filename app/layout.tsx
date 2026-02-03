@@ -1,23 +1,35 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { cn } from "@/lib/utils";
 import { ThemeProvider } from "@/components/theme-provider";
 
-const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
+const geistSans = localFont({
+  src: "./fonts/GeistVF.woff2",
+  variable: "--font-sans",
+  weight: "100 900",
+  fallback: ["system-ui", "arial"],
+});
+
+const geistMono = localFont({
+  src: "./fonts/GeistMonoVF.woff2",
+  variable: "--font-mono",
+  weight: "100 900",
+  fallback: ["monospace"],
+});
 
 export const metadata: Metadata = {
-  title: "Santiago Arias | Senior Frontend Developer & AI Specialist",
-  description: "Portfolio of Santiago Arias, a Senior Frontend Developer specializing in Next.js, React, and AI integration. Expert in building high-performance, intelligent web applications.",
-  keywords: ["Next.js", "React", "Frontend Developer", "AI Engineer", "TypeScript", "Tailwind CSS", "Vercel"],
+  title: "Santiago Arias | AI-Augmented Full Stack Developer",
+  description: "Portfolio of Santiago Arias - 8+ years building production apps with React/Next.js. Expert in AI-assisted development with Claude Code, RAG strategies, and custom slash commands.",
+  keywords: ["Next.js", "React", "AI Developer", "Claude Code", "RAG", "TypeScript", "Tailwind CSS", "Full Stack", "Team Lead"],
   openGraph: {
     type: "website",
     locale: "en_US",
     url: "https://santiagoarias.dev",
-    title: "Santiago Arias | Senior Frontend Developer",
-    description: "Senior Frontend Developer & AI Specialist. View my work and experience.",
+    title: "Santiago Arias | AI-Augmented Full Stack Developer",
+    description: "8+ years of experience. Expert in React/Next.js and AI-assisted development. See interactive demos of RAG, slash commands, and AI workflows.",
     images: [
       {
         url: "https://github.com/soy4rias.png",
@@ -29,10 +41,10 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Santiago Arias | Senior Frontend Developer",
-    description: "Senior Frontend Developer & AI Specialist.",
+    title: "Santiago Arias | AI-Augmented Full Stack Developer",
+    description: "8+ years building production apps. Expert in AI-assisted development with Claude Code, RAG, and custom slash commands.",
     images: ["https://github.com/soy4rias.png"],
-    creator: "@soy4rias", // Assuming twitter handle based on github
+    creator: "@soy4rias",
   },
 };
 
@@ -43,7 +55,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="scroll-smooth" suppressHydrationWarning>
-      <body className={cn(inter.variable, "min-h-screen bg-background font-sans antialiased")}>
+      <body className={cn(geistSans.variable, geistMono.variable, "min-h-screen bg-background font-sans antialiased")}>
         <ThemeProvider
             attribute="class"
             defaultTheme="system"
