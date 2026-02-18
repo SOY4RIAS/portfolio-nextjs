@@ -4,8 +4,11 @@ import { AIChat, AIWorkflow, AIExpertiseSection } from '@/features/ai';
 import { ExperienceSection } from '@/features/experience';
 import { EducationSection } from '@/features/education';
 import { GitHubActivity } from '@/features/github';
+import { getBlogPosts, BlogSection } from '@/features/blog';
 
-export default function Home() {
+export default async function Home() {
+  const posts = await getBlogPosts();
+
   return (
     <div className="flex flex-col min-h-screen">
       {/* Hero - First impression */}
@@ -22,6 +25,9 @@ export default function Home() {
 
       {/* AI Expertise - Detailed AI skills */}
       <AIExpertiseSection />
+
+      {/* Blog - Latest articles */}
+      <BlogSection posts={posts} />
 
       {/* Education */}
       <EducationSection />
