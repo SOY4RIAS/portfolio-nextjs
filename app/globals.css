@@ -87,3 +87,39 @@
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
+
+/*
+   Blog Reader Theme Variables
+   Scoped to [data-reader-theme] for isolated theming
+*/
+[data-reader-theme="light"] {
+  --reader-bg: #ffffff;
+  --reader-fg: #1a1a1a;
+  --reader-muted: #6b6b6b;
+  --reader-border: #e5e5e5;
+  --reader-code-bg: #f5f5f5;
+}
+
+[data-reader-theme="dark"] {
+  --reader-bg: #141414;
+  --reader-fg: #e8e8e8;
+  --reader-muted: #888888;
+  --reader-border: #2a2a2a;
+  --reader-code-bg: #1e1e1e;
+}
+
+[data-reader-theme="sepia"] {
+  --reader-bg: #f4ecd8;
+  --reader-fg: #5b4636;
+  --reader-muted: #8b7355;
+  --reader-border: #d4c5a9;
+  --reader-code-bg: #ece4d0;
+}
+
+[data-reader-theme="paper"] {
+  --reader-bg: #faf9f6;
+  --reader-fg: #2d2d2d;
+  --reader-muted: #6b6b6b;
+  --reader-border: #e8e6e1;
+  --reader-code-bg: #f0efec;
+}
