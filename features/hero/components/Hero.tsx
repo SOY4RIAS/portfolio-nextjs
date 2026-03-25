@@ -88,24 +88,33 @@ interface HeroContentProps {
 function HeroContent({ currentRole, onChatClick, onExperienceClick }: HeroContentProps) {
   return (
     <div className="flex-1 text-center lg:text-left max-w-2xl">
-      {/* Badge - CSS animation, no JS blocking */}
-      <div
-        className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary mb-6 animate-[hero-fade-in_0.5s_ease-out_both]"
+      {/* Badge */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+        className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary mb-6"
       >
         <Code className="w-4 h-4" />
         <span className="text-sm font-medium">Senior Frontend Developer & Technical Lead</span>
-      </div>
+      </motion.div>
 
-      {/* Name - CSS animation */}
-      <h1
-        className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight mb-4 animate-[hero-fade-in_0.5s_ease-out_0.1s_both]"
+      {/* Name */}
+      <motion.h1
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, delay: 0.1 }}
+        className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight mb-4"
       >
         {personalInfo.name}
-      </h1>
+      </motion.h1>
 
-      {/* Animated Role - CSS animation for container, framer for role switch */}
-      <div
-        className="h-10 mb-6 animate-[hero-fade-in_0.5s_ease-out_0.2s_both]"
+      {/* Animated Role */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, delay: 0.2 }}
+        className="h-10 mb-6"
       >
         <motion.h2
           key={currentRole}
@@ -116,31 +125,35 @@ function HeroContent({ currentRole, onChatClick, onExperienceClick }: HeroConten
         >
           {roles[currentRole]}
         </motion.h2>
-      </div>
+      </motion.div>
 
-      {/* Summary - THIS IS THE LCP ELEMENT - must render immediately, CSS animation only */}
-      <p
-        className="text-lg text-muted-foreground mb-8 leading-relaxed animate-[hero-fade-in_0.5s_ease-out_0.3s_both]"
-      >
+      {/* Summary - LCP element: starts visible (no opacity:0) to avoid render delay */}
+      <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
         <strong>8 years</strong> building web & mobile apps with <strong>React, Next.js & React Native</strong>.
         Technical Lead who has managed <strong>teams of 30+ developers</strong>.
         I leverage <strong>AI tools</strong> to ship faster without compromising quality.
       </p>
 
-      {/* Skills badges - CSS animation */}
-      <div
-        className="flex flex-wrap justify-center lg:justify-start gap-2 mb-8 animate-[hero-fade-in_0.5s_ease-out_0.4s_both]"
+      {/* Skills badges */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, delay: 0.4 }}
+        className="flex flex-wrap justify-center lg:justify-start gap-2 mb-8"
       >
         {featuredSkills.map((skill) => (
           <Badge key={skill} variant="secondary" className="px-3 py-1">
             {skill}
           </Badge>
         ))}
-      </div>
+      </motion.div>
 
-      {/* CTAs - CSS animation */}
-      <div
-        className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-8 animate-[hero-fade-in_0.5s_ease-out_0.5s_both]"
+      {/* CTAs */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, delay: 0.5 }}
+        className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-8"
       >
         <Button size="lg" onClick={onChatClick}>
           <MessageSquare className="mr-2 h-4 w-4" />
@@ -150,16 +163,19 @@ function HeroContent({ currentRole, onChatClick, onExperienceClick }: HeroConten
           <Code className="mr-2 h-4 w-4" />
           View Experience
         </Button>
-      </div>
+      </motion.div>
 
-      {/* Social links - CSS animation */}
-      <div
-        className="flex gap-4 justify-center lg:justify-start animate-[hero-fade-in_0.5s_ease-out_0.6s_both]"
+      {/* Social links */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, delay: 0.6 }}
+        className="flex gap-4 justify-center lg:justify-start"
       >
         <SocialLink href={personalInfo.github} icon={<Github className="w-5 h-5" />} />
         <SocialLink href={personalInfo.linkedin} icon={<Linkedin className="w-5 h-5" />} />
         <SocialLink href={`mailto:${personalInfo.email}`} icon={<Mail className="w-5 h-5" />} />
-      </div>
+      </motion.div>
     </div>
   );
 }
@@ -180,8 +196,11 @@ function SocialLink({ href, icon }: { href: string; icon: React.ReactNode }) {
 
 function HeroVisual({ displayedSnippet }: { displayedSnippet: string }) {
   return (
-    <div
-      className="flex-1 w-full max-w-xl animate-[hero-scale-in_0.6s_ease-out_0.3s_both]"
+    <motion.div
+      initial={{ opacity: 0, scale: 0.9 }}
+      animate={{ opacity: 1, scale: 1 }}
+      transition={{ duration: 0.6, delay: 0.3 }}
+      className="flex-1 w-full max-w-xl"
     >
       <div className="relative">
         {/* Glowing background */}
@@ -198,7 +217,7 @@ function HeroVisual({ displayedSnippet }: { displayedSnippet: string }) {
           </div>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 }
 
