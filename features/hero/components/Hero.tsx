@@ -127,17 +127,12 @@ function HeroContent({ currentRole, onChatClick, onExperienceClick }: HeroConten
         </motion.h2>
       </motion.div>
 
-      {/* Summary */}
-      <motion.p
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, delay: 0.3 }}
-        className="text-lg text-muted-foreground mb-8 leading-relaxed"
-      >
+      {/* Summary - LCP element: starts visible (no opacity:0) to avoid render delay */}
+      <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
         <strong>8 years</strong> building web & mobile apps with <strong>React, Next.js & React Native</strong>.
         Technical Lead who has managed <strong>teams of 30+ developers</strong>.
         I leverage <strong>AI tools</strong> to ship faster without compromising quality.
-      </motion.p>
+      </p>
 
       {/* Skills badges */}
       <motion.div

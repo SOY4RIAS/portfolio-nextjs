@@ -191,7 +191,7 @@ export function AIWorkflow() {
                 <h3 className={`text-2xl font-bold mb-2 ${currentPhase.color}`}>
                   {currentPhase.title} Phase
                 </h3>
-                <p className="text-muted-foreground">{currentPhase.description}</p>
+                <p className="text-foreground/70">{currentPhase.description}</p>
               </div>
 
               {/* AI Tools */}
@@ -229,7 +229,7 @@ export function AIWorkflow() {
                       initial={{ opacity: 0, x: -10 }}
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ delay: i * 0.1 }}
-                      className="flex items-center gap-2 text-sm"
+                      className="flex items-center gap-2 text-sm text-foreground/80"
                     >
                       <CheckCircle className={`w-4 h-4 ${currentPhase.color}`} />
                       {activity}
@@ -250,7 +250,7 @@ export function AIWorkflow() {
 
                 {/* Transition indicator */}
                 {activePhase !== 'review' && (
-                  <div className="mt-4 flex items-center gap-2 text-sm text-muted-foreground">
+                  <div className="mt-4 flex items-center gap-2 text-sm text-foreground/70">
                     <ArrowRight className="w-4 h-4" />
                     <span>Feeds into next phase</span>
                   </div>

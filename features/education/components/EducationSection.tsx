@@ -1,5 +1,3 @@
-'use client';
-
 import { Card, CardHeader, CardTitle, CardDescription } from '@/shared/components/ui/card';
 import { Badge } from '@/shared/components/ui/badge';
 import { education } from '../data/education';
