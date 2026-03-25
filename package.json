@@ -10,7 +10,6 @@
   },
   "dependencies": {
     "@ai-sdk/react": "^3.0.71",
-    "@base-ui-components/react": "^1.0.0-alpha.1",
     "@libsql/client": "^0.17.0",
     "@midudev/tailwind-animations": "0.2.0",
     "@openrouter/ai-sdk-provider": "^2.1.1",
@@ -45,6 +44,12 @@
     "use-stick-to-bottom": "^1.1.2",
     "zod": "^3.25.76"
   },
+  "browserslist": [
+    "last 2 Chrome versions",
+    "last 2 Firefox versions",
+    "last 2 Safari versions",
+    "last 2 Edge versions"
+  ],
   "devDependencies": {
     "@octokit/rest": "^20.0.0",
     "@types/node": "^20.0.0",
